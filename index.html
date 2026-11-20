@@ -15,13 +15,30 @@
 
       <div id="coords"></div>
 
-      <div id="transformations"></div> <!-- Afficher à la place des champs pour coordonnées une fois le canvas en place, avec un bouton pour revenir en arrière -->
+      <div id="transformations" style="visibility: hidden">
+        <button id-"doEchelleX">Changement d'échelle horizontale</button><input type="number" id="echelleXK" placeholder="k"><br/>
+        <button id-"doEchelleY">Changement d'échelle verticale</button><input type="number" id="echelleYK" placeholder="k"><br/>
+        <button id-"doTranslation">Changement d'échelle horizontale</button><input type="number" id="translationX" placeholder="x"><input type="number" id="translationX" placeholder="y"><br/>
+        <button id-"doSymmetrieX">Symétrie par rapport à l'axe des abscisses</button><br/>
+        <button id-"doSymmetrieY">Symétrie par rapport à l'axe des ordonnées</button><br/>
+        <button id-"doRotation90">Rotation de 90°</button><br/>
+        <button id-"doRotation180">Rotation de 180°</button><br/>
+        <button id-"doRotation270">Rotation de 270°</button><br/>
+        <button id-"doHomothetie">Homothétie</button><input type="number" id="homothetieK" placeholder="k"><br/>
+
+
+      </div> <!-- Afficher à la place des champs pour coordonnées une fois le canvas en place, avec un bouton pour revenir en arrière -->
 
       <br/> <br/> <br/>
 
       <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
 
       <script>
+
+        // TODO: Dessiner le graphique cartésien dans le canvas
+
+
+
         const nbCoords = document.getElementById("nbCoords");
         const updateCoords = document.getElementById("updateCoords");
         const coordsDiv = document.getElementById("coords");
@@ -56,6 +73,36 @@
           coordsDiv.appendChild(button);
 
         });
+
+        const validerCoords = document.getElementById("updateCoords");
+
+        validerCoords.addEventListener("click", function () {    // Construire la matrice à base des coordonnées, placer les sommmets dans le graphique, et révéler les boutons pour transformations
+          const matrice = [];
+
+          for (let i = 1; i <= total; i++) {
+            const x = document.getElementById("coordX" + i).value;
+            const y = document.getElementById("coordY" + i).value;
+
+            matrice.push([Number(x), Number(y)]);
+          }
+        // TODO: Placer les sommets dans le graphique
+
+        // TODO: révéler boutons pour transformations
+        });
+
+        // TODO: Transformations
+
+        /*
+        1. Changement d’échelle horizontal, de facteur k.
+        2. Changement d’échelle vertical, de facteur k.
+        3. Translation selon un vecteur (a, b).
+        4. Symétrie par rapport à l’axe des abscisses, l’axe x.
+        5. Symétrie par rapport à l’axe des ordonnées, l’axe y.
+        6. Rotation de 90◦, dans le sens antihoraire, centrée à l’origine.
+        7. Rotation de 180◦, dans le sens antihoraire, centrée à l’origine.
+        8. Rotation de 270◦, dans le sens antihoraire, centrée à l’origine.
+        9. Homothétie de rapport k, centrée à l’origine
+        */
 
       </script>
     </main>
