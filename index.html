@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header>
+    Livrable 2 <br/>
+    Visualiseur de transformations matricielles en 2D
+    </header>
+      <main>
+      <label>Nombre de coordonnées : <input type="number" id="nbCoords" min="3" value="3"></label>
+      <button id="updateCoords">Mettre à jour</button>
+
+      <div id="coords"></div>
+
+      <div id="transformations"></div> <!-- Afficher à la place des champs pour coordonnées une fois le canvas en place, avec un bouton pour revenir en arrière -->
+
+      <br/> <br/> <br/>
+
+      <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+
+      <script>
+        const nbCoords = document.getElementById("nbCoords");
+        const updateCoords = document.getElementById("updateCoords");
+        const coordsDiv = document.getElementById("coords");
+
+        updateCoords.addEventListener("click", function () {    // Mettre à jour le nombre de champs pour coordonnées
+          coordsDiv.innerHTML = "";  // TODO: ne pas réinitialiser les nombres existants
+
+          const total = Number(nbCoords.value);
+
+          for (let i = 1; i <= total; i++) {
+            const row = document.createElement("div");
+
+            const xInput = document.createElement("input");
+            xInput.type = "number";
+            xInput.placeholder = "x" + i;
+            xInput.id = "coordX" + i;
+
+            const yInput = document.createElement("input");
+            yInput.type = "number";
+            yInput.placeholder = "y" + i;
+            yInput.id = "coordY" + i;
+
+            row.appendChild(xInput);
+            row.appendChild(yInput);
+            coordsDiv.appendChild(row);
+          }
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.id = "validerCoords"
+          button.textContent = "Valider";
+          coordsDiv.appendChild(button);
+
+        });
+
+      </script>
+    </main>
+    <footer></footer>
+  </body>
+</html>
